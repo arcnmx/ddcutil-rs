@@ -4,7 +4,7 @@ version = "0.0.1"
 authors = ["arcnmx"]
 
 description = "libddcutil FFI bindings"
-keywords = ["ddcci", "ddc", "ci", "ddcutil", "ddccontrol"]
+keywords = ["ddcci", "ddc", "ci", "ddcutil", "vcp"]
 
 documentation = "http://arcnmx.github.io/ddcutil-rs/ddcutil_sys"
 repository = "https://github.com/arcnmx/ddcutil-rs"

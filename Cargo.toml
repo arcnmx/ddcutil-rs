@@ -3,8 +3,8 @@ name = "ddcutil"
 version = "0.0.1"
 authors = ["arcnmx"]
 
-description = "DDC/CI access via libddcutil"
-keywords = ["ddcci", "ddc", "ci", "ddcutil", "ddccontrol"]
+description = "DDC/CI monitor access via libddcutil"
+keywords = ["ddcci", "ddc", "ci", "ddcutil", "vcp"]
 
 documentation = "http://arcnmx.github.io/ddcutil-rs/ddcutil"
 repository = "https://github.com/arcnmx/ddcutil-rs"
