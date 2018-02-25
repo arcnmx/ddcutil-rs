@@ -13,7 +13,7 @@ license = "GPL-2.0-or-later"
 
 [badges]
 travis-ci = { repository = "arcnmx/ddcutil-rs" }
-maintenance = { status = "passively-maintained" } # actively-developed, passively-maintained, as-is, none, experimental, looking-for-maintainer, deprecated
+maintenance = { status = "passively-maintained" }
 
 [dependencies]
 libc = "^0.2.36"
