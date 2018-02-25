@@ -9,7 +9,7 @@ keywords = ["ddcci", "ddc", "ci", "ddcutil", "vcp"]
 documentation = "http://arcnmx.github.io/ddcutil-rs/ddcutil_sys"
 repository = "https://github.com/arcnmx/ddcutil-rs"
 readme = "../README.md"
-license = "GPL-2.0-or-later"
+license = "GPL-2.0+"
 
 [badges]
 travis-ci = { repository = "arcnmx/ddcutil-rs" }
