@@ -18,6 +18,18 @@ extern {
 	pub fn ddca_mccs_version_id_name(version_id: DDCA_MCCS_Version_Id) -> *mut c_char;
 	pub fn ddca_mccs_version_id_desc(version_id: DDCA_MCCS_Version_Id) -> *mut c_char;
 
+	pub fn ddca_max_max_tries() -> c_int;
+	pub fn ddca_get_max_tries(retry_type: DDCA_Retry_Type) -> c_int;
+	pub fn ddca_set_max_tries(retry_type: DDCA_Retry_Type, max_tries: c_int) -> DDCA_Status;
+
+	pub fn ddca_enable_verify(onoff: bool);
+	pub fn ddca_is_verify_enabled() -> bool;
+
+	pub fn ddca_get_output_level() -> DDCA_Output_Level;
+	pub fn ddca_set_output_level(newval: DDCA_Output_Level);
+	pub fn ddca_enable_report_ddc_errors(onoff: bool);
+	pub fn ddca_is_report_ddc_errors_enabled() -> bool;
+
 	pub fn ddca_get_display_info_list() -> *mut DDCA_Display_Info_List;
 	pub fn ddca_free_display_info_list(dlist: *mut DDCA_Display_Info_List);
 	pub fn ddca_report_display_info(dinfo: *mut DDCA_Display_Info, depth: c_int);
@@ -120,6 +132,16 @@ extern {
 }
 
 pub type DDCA_Status = c_int;
+
+pub type DDCA_Retry_Type = c_int;
+pub const DDCA_WRITE_ONLY_TRIES: DDCA_Retry_Type = 0;
+pub const DDCA_WRITE_READ_TRIES: DDCA_Retry_Type = 1;
+pub const DDCA_MULTI_PART_TRIES: DDCA_Retry_Type = 2;
+
+pub type DDCA_Output_Level = c_int;
+pub const DDCA_OL_TERSE: DDCA_Output_Level = 0x04;
+pub const DDCA_OL_NORMAL: DDCA_Output_Level = 0x08;
+pub const DDCA_OL_VERBOSE: DDCA_Output_Level = 0x10;
 
 #[repr(C)]
 #[derive(Copy, Clone, Debug)]
