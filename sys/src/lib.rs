@@ -5,7 +5,6 @@ extern crate libc;
 
 use std::fmt;
 use std::slice::from_raw_parts;
-use std::ffi::{CString, CStr};
 use libc::{c_char, c_int, c_void};
 
 #[link(name = "ddcutil")]
@@ -171,7 +170,7 @@ impl DDCA_IO_Path {
 }
 
 #[repr(C)]
-#[derive(Copy, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct DDCA_Display_Info {
 	pub marker: [c_char; 4],
 	pub dispno: c_int,
@@ -186,46 +185,9 @@ pub struct DDCA_Display_Info {
 }
 
 impl DDCA_Display_Info {
-	pub fn mfg_id(&self) -> &CStr {
-		unsafe {
-			CStr::from_ptr(self.mfg_id)
-		}
-	}
-
-	pub fn model_name(&self) -> &CStr {
-		unsafe {
-			CStr::from_ptr(self.model_name)
-		}
-	}
-
-	pub fn sn(&self) -> &CStr {
-		unsafe {
-			CStr::from_ptr(self.sn)
-		}
-	}
-
 	pub fn edid_bytes(&self) -> &[u8] {
 		unsafe {
 			from_raw_parts(self.edid_bytes, 0x80)
-		}
-	}
-}
-
-impl fmt::Debug for DDCA_Display_Info {
-	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-		unsafe {
-			f.debug_struct("DDCA_Display_Info")
-				.field("marker", &CString::new(from_raw_parts(self.marker.as_ptr() as *const u8, self.marker.len())))
-				.field("dispno", &self.dispno)
-				.field("path", &self.path)
-				.field("usb_bus", &self.usb_bus)
-				.field("usb_device", &self.usb_device)
-				.field("mfg_id", &self.mfg_id())
-				.field("model_name", &self.model_name())
-				.field("sn", &self.sn())
-				.field("edid_bytes", &self.edid_bytes())
-				.field("dref", &self.dref)
-				.finish()
 		}
 	}
 }
@@ -413,7 +375,6 @@ impl DDCA_Non_Table_Value {
 }
 
 #[repr(C)]
-#[derive(Copy, Clone)]
 pub struct DDCA_Table_Value {
 	pub bytect: u16,
 	pub bytes: [u8; 0],
