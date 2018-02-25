@@ -28,7 +28,7 @@ before_install:
 - sudo apt-get update -q
 #- sudo apt-get install --allow-unauthenticated libddcutil # libddcutil-dev
 - sudo apt-get install i2c-tools libusb-1.0-0-dev libudev-dev libxrandr-dev libdrm-dev
-- mkdir $HOME/ddcutil && curl -LfsS https://github.com/rockowitz/ddcutil/archive/v0.8.6.tar.gz | tar -xzC $HOME/ddcutil --strip-components=1
+- mkdir -p $HOME/ddcutil && curl -LfsS https://github.com/rockowitz/ddcutil/archive/v0.8.6.tar.gz | tar -xzC $HOME/ddcutil --strip-components=1
 - cd $HOME/ddcutil && ./autogen.sh && ./configure --prefix=/usr && make -j4 && sudo make install
 script:
 - cd $TRAVIS_BUILD_DIR/sys
