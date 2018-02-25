@@ -17,4 +17,5 @@ maintenance = { status = "passively-maintained" } # actively-developed, passivel
 
 [dependencies]
 ddcutil-sys = { version = "0.0.1", path = "sys" }
+bitflags = "^1.0.1"
 libc = "^0.2.36"

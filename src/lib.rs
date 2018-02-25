@@ -1,6 +1,8 @@
 #![doc(html_root_url = "http://arcnmx.github.io/ddcutil-rs/")]
-extern crate ddcutil_sys as sys;
+pub extern crate ddcutil_sys as sys;
 extern crate libc;
+#[macro_use]
+extern crate bitflags;
 
 use std::{result, str};
 
@@ -10,6 +12,9 @@ pub type Result<T> = result::Result<T, Error>;
 
 mod display;
 pub use display::*;
+
+mod features;
+pub use features::*;
 
 pub type Version = sys::DDCA_Ddcutil_Version_Spec;
 

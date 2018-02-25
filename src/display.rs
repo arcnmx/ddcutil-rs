@@ -1,10 +1,8 @@
 use std::{mem, fmt};
 use std::borrow::Cow;
-use std::ffi::CStr;
+use std::ffi::{CStr, CString};
 use libc::{self, c_int, c_char};
-use {sys, Error, Status};
-
-pub type VcpFeatureCode = u8;
+use {sys, Error, Status, FeatureCode, Capabilities, Value};
 
 #[derive(Clone)]
 pub struct DisplayInfo {
@@ -238,7 +236,23 @@ impl Display {
 		}
 	}
 
-	pub fn vcp_set_simple(&self, code: VcpFeatureCode, value: u8) -> ::Result<()> {
+	pub fn capabilities_string(&self) -> ::Result<CString> {
+		unsafe {
+			let mut res = mem::uninitialized();
+			Error::from_status(sys::ddca_get_capabilities_string(
+				self.handle, &mut res
+			))?;
+			let string = CStr::from_ptr(res).to_owned();
+			libc::free(res as *mut _);
+			Ok(string)
+		}
+	}
+
+	pub fn capabilities(&self) -> ::Result<Capabilities> {
+		self.capabilities_string().and_then(|c| Capabilities::from_cstr(&c))
+	}
+
+	pub fn vcp_set_simple(&self, code: FeatureCode, value: u8) -> ::Result<()> {
 		unsafe {
 			Error::from_status(sys::ddca_set_simple_nc_vcp_value(
 				self.handle, code as _, value
@@ -246,7 +260,7 @@ impl Display {
 		}
 	}
 
-	pub fn vcp_set_raw(&self, code: VcpFeatureCode, value: u16) -> ::Result<()> {
+	pub fn vcp_set_raw(&self, code: FeatureCode, value: u16) -> ::Result<()> {
 		unsafe {
 			Error::from_status(sys::ddca_set_raw_vcp_value(
 				self.handle, code as _, (value >> 8) as u8, value as u8
@@ -254,7 +268,7 @@ impl Display {
 		}
 	}
 
-	pub fn vcp_set_continuous(&self, code: VcpFeatureCode, value: i32) -> ::Result<()> {
+	pub fn vcp_set_continuous(&self, code: FeatureCode, value: i32) -> ::Result<()> {
 		unsafe {
 			Error::from_status(sys::ddca_set_continuous_vcp_value(
 				self.handle, code as _, value
@@ -262,29 +276,29 @@ impl Display {
 		}
 	}
 
-	pub fn vcp_get_value(&self, code: VcpFeatureCode) -> ::Result<VcpValue> {
+	pub fn vcp_get_value(&self, code: FeatureCode) -> ::Result<Value> {
 		unsafe {
 			let mut raw = mem::uninitialized();
 			Error::from_status(sys::ddca_get_any_vcp_value(
 				self.handle, code as _, sys::DDCA_NON_TABLE_VCP_VALUE_PARM, &mut raw
-			)).map(drop)?;
+			))?;
 			let raw = &mut *raw;
 			if raw.value_type != sys::DDCA_NON_TABLE_VCP_VALUE || raw.opcode != code {
 				libc::free(raw as *mut _ as *mut _);
 				return Err(Error::new(Status::new(libc::EINVAL)))
 			}
-			let value = VcpValue::from_raw(raw.c_nc());
+			let value = Value::from_raw(raw.c_nc());
 			libc::free(raw as *mut _ as *mut _);
 			Ok(value)
 		}
 	}
 
-	pub fn vcp_get_table(&self, code: VcpFeatureCode) -> ::Result<Vec<u8>> {
+	pub fn vcp_get_table(&self, code: FeatureCode) -> ::Result<Vec<u8>> {
 		unsafe {
 			let mut raw = mem::uninitialized();
 			Error::from_status(sys::ddca_get_any_vcp_value(
 				self.handle, code as _, sys::DDCA_TABLE_VCP_VALUE_PARM, &mut raw
-			)).map(drop)?;
+			))?;
 			let raw = &mut *raw;
 			if raw.value_type != sys::DDCA_TABLE_VCP_VALUE || raw.opcode != code {
 				libc::free(raw as *mut _ as *mut _);
@@ -299,21 +313,6 @@ impl Display {
 
 	pub fn raw(&self) -> sys::DDCA_Display_Handle {
 		self.handle
-	}
-}
-
-#[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
-pub struct VcpValue {
-	pub value: u16,
-	pub maximum: u16,
-}
-
-impl VcpValue {
-	pub fn from_raw(raw: &sys::DDCA_Non_Table_Value) -> Self {
-		VcpValue {
-			value: raw.value(),
-			maximum: raw.maximum(),
-		}
 	}
 }
 

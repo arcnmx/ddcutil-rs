@@ -41,7 +41,7 @@ extern {
 	) -> DDCA_Status;
 
 	pub fn ddca_free_parsed_capabilities(
-		pcaps: *mut c_char,
+		pcaps: *mut DDCA_Capabilities,
 	);
 
 	pub fn ddca_report_parsed_capabilities(
