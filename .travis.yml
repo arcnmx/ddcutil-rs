@@ -3,17 +3,13 @@ rust:
 - stable
 - beta
 - nightly
-sudo: false
+sudo: required
 os:
 - linux
 cache:
   directories:
   - "$HOME/.cargo"
   - target
-addons:
-  apt:
-    packages:
-    - libddcutil-dev
 matrix:
   fast_finish: true
   allow_failures:
@@ -27,6 +23,9 @@ env:
   - secure: 4vOeCldOpfdj8ef/1iuaAhzzLYTkTTSmHkl91c0vVHFIz44A1NzyaraTVIRadNtoLyUd9M8SmeVLURH7IeFfbpVXtZwQo+ynabEjfXZ9AsASKrWHajM5fjVXfUFGvQssNTYLNLNEg+pPgRzxZdpXIEgajGWcoC/1RO/rKhyjdFIaoWAr+c9TGQLXUlTqs3a5U9WE5r4CqUQxxBftEI645HwYEkwGh7dc52FwKvel103DTsFwOOHB7Bpmn2TfJm/VsJdMWdSN6+gwI1eyh+LQkUhQA9S3SwQhmsu2iADQKFzJYTk+9/XqFBMhGwmqohfsiY76YzrwsF8eSaUOrZf9mtVnhOkzpswWH37ttjdx6sybA6fhgYC5wksDW5uCmqppLmlojLgUN9eBsnsez0c0mjDfNU+HBUpAMGFRFePdR2v7yFoxJW+4c3MZOERZct4n93M6egivMJ88fan/WpQDZibrlY1Fy2PZdUeD6UvoJkMRyHuTptKz4rAgbx3jDy0jSIL7z2UBO92NiioQTjz4+PnJfqE1BkzgY9x3miOihYLXFxnDUyUmxGIsvDBHwyN9YVCG8d7yN0ChBL6VYfwiJf49vqTdGmUJdK4i8aRYfFAKz9jfec8vvzJha8Ejfz2ULfkSer9lltFUoCLSFpIaYKrcotu1WPMUlFRlcosX3Yc=
 before_install:
 - curl -L https://github.com/arcnmx/ci/archive/0.2.tar.gz | tar -xzC $HOME && . $HOME/ci-0.2/src
+- sudo add-apt-repository ppa:rockowitz/ddcutil -y
+- sudo apt-get update -q
+- sudo apt-get install libddcutil-dev
 script:
 - cd $TRAVIS_BUILD_DIR/sys
 - cargo test
@@ -34,7 +33,6 @@ script:
 - cd $TRAVIS_BUILD_DIR
 - cargo test
 - cargo build
-- cargo build --examples
 deploy:
   provider: script
   script: 'true'
