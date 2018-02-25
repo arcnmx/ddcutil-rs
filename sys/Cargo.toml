@@ -1,0 +1,16 @@
+[package]
+name = "ddcutil-sys"
+version = "0.0.1"
+authors = ["arcnmx"]
+
+description = "libddcutil FFI bindings"
+keywords = ["ddc/ci", "ddc", "ci", "ddcutil", "ddccontrol"]
+
+documentation = "http://arcnmx.github.io/ddcutil-rs/ddcutil_sys"
+repository = "https://github.com/arcnmx/ddcutil-rs"
+readme = "../README.md"
+license = "GPL-2.0-or-later"
+
+[badges]
+travis-ci = { repository = "arcnmx/ddcutil-rs" }
+maintenance = { status = "passively-maintained" } # actively-developed, passively-maintained, as-is, none, experimental, looking-for-maintainer, deprecated

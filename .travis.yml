@@ -1,0 +1,58 @@
+language: rust
+rust:
+- stable
+- beta
+- nightly
+sudo: false
+os:
+- linux
+cache:
+  directories:
+  - "$HOME/.cargo"
+  - target
+addons:
+  apt:
+    packages:
+    - libddcutil-dev
+matrix:
+  fast_finish: true
+  allow_failures:
+  - rust: nightly
+env:
+  matrix:
+  - CARGO_FEATURES=
+  global:
+  - CARGO_QUIET=
+  - secure: u0pDJPfRY53upKZzfRb/POUCNCQmemlau6MYFEXqvavEVcPCqI1fpQqCsIkGjfJjW8ht3+MlZxbmeq4YgOReb1Gtlw2zhpFWSYL4VbHxFD84f9NxJ4ZdDfBNIfdz1Ed1NDhwcwDg+aIt6jgbGZp+KbW41SlkUFYByTPtCzRbk5GEgeY0EQME8vtNY6fE7zgvp1+2H3wPw+kbD0nrq59xeSQjkzxaURla/lAm1WUcOWI2ZEulKESLKSLEszd4N4TpupOXiLiMp98Jpo18DmrjMskLEwNRdCCJDUhx+tFXXnPAzgnfjmVtfh/8bHQ9999PmHYpQv9MXcIPzXkp3LI2bHFC0j8beuWKHSzUR7j0hiBjrmzNjOPWDsQ8hQtEd0093wS8uCbJ9YQRRA+VpWdiNHF0rgXhGZPg/CepH0+dh8WWLEzmYB3hmFssKtOdfUqnoZrijt2g/tmpCyFEiYBN5z1DCEBCPcJJcToVRb+sR0HPPaaZPhghMN7/ARSWqVl/B5wcJ0/VnWDghWRoaHVtTJyUFqkVTbr34uap0RVSJmJMhwf9s0a7FhVsQiKBvGEERmGBhz0IYuxyO8ALMGvAz82Elc43i9gRCxrRT9OvxTkvFWyjWwfV6eYClJixCE/V/PCa6z5LClNvA/n+Uvz7afA4oeCo98diCR0p7Y7OaEU=
+  - secure: 4vOeCldOpfdj8ef/1iuaAhzzLYTkTTSmHkl91c0vVHFIz44A1NzyaraTVIRadNtoLyUd9M8SmeVLURH7IeFfbpVXtZwQo+ynabEjfXZ9AsASKrWHajM5fjVXfUFGvQssNTYLNLNEg+pPgRzxZdpXIEgajGWcoC/1RO/rKhyjdFIaoWAr+c9TGQLXUlTqs3a5U9WE5r4CqUQxxBftEI645HwYEkwGh7dc52FwKvel103DTsFwOOHB7Bpmn2TfJm/VsJdMWdSN6+gwI1eyh+LQkUhQA9S3SwQhmsu2iADQKFzJYTk+9/XqFBMhGwmqohfsiY76YzrwsF8eSaUOrZf9mtVnhOkzpswWH37ttjdx6sybA6fhgYC5wksDW5uCmqppLmlojLgUN9eBsnsez0c0mjDfNU+HBUpAMGFRFePdR2v7yFoxJW+4c3MZOERZct4n93M6egivMJ88fan/WpQDZibrlY1Fy2PZdUeD6UvoJkMRyHuTptKz4rAgbx3jDy0jSIL7z2UBO92NiioQTjz4+PnJfqE1BkzgY9x3miOihYLXFxnDUyUmxGIsvDBHwyN9YVCG8d7yN0ChBL6VYfwiJf49vqTdGmUJdK4i8aRYfFAKz9jfec8vvzJha8Ejfz2ULfkSer9lltFUoCLSFpIaYKrcotu1WPMUlFRlcosX3Yc=
+before_install:
+- curl -L https://github.com/arcnmx/ci/archive/0.2.tar.gz | tar -xzC $HOME && . $HOME/ci-0.2/src
+script:
+- cd $TRAVIS_BUILD_DIR/sys
+- cargo test
+- cargo build
+- cd $TRAVIS_BUILD_DIR
+- cargo test
+- cargo build
+- cargo build --examples
+deploy:
+  provider: script
+  script: 'true'
+  on:
+    tags: true
+    all_branches: true
+    condition: "$TRAVIS_RUST_VERSION = stable"
+before_deploy:
+- cd $TRAVIS_BUILD_DIR
+- cargo doc -p ddcutil-sys
+- cargo doc
+- cd $TRAVIS_BUILD_DIR/sys
+- cargo package
+after_deploy:
+- cd $TRAVIS_BUILD_DIR
+- cargo pages-publish
+- cd $TRAVIS_BUILD_DIR/sys
+- cargo publish
+- cd $TRAVIS_BUILD_DIR
+- cargo package
+- cargo publish
