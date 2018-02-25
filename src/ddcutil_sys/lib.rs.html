@@ -465,6 +465,28 @@
 <span id="419">419</span>
 <span id="420">420</span>
 <span id="421">421</span>
+<span id="422">422</span>
+<span id="423">423</span>
+<span id="424">424</span>
+<span id="425">425</span>
+<span id="426">426</span>
+<span id="427">427</span>
+<span id="428">428</span>
+<span id="429">429</span>
+<span id="430">430</span>
+<span id="431">431</span>
+<span id="432">432</span>
+<span id="433">433</span>
+<span id="434">434</span>
+<span id="435">435</span>
+<span id="436">436</span>
+<span id="437">437</span>
+<span id="438">438</span>
+<span id="439">439</span>
+<span id="440">440</span>
+<span id="441">441</span>
+<span id="442">442</span>
+<span id="443">443</span>
 </pre><pre class="rust ">
 <span class="attribute">#![<span class="ident">doc</span>(<span class="ident">html_root_url</span> <span class="op">=</span> <span class="string">&quot;http://arcnmx.github.io/ddcutil-rs/&quot;</span>)]</span>
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">non_camel_case_types</span>, <span class="ident">non_snake_case</span>)]</span>
@@ -485,6 +507,18 @@
 
 	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_mccs_version_id_name</span>(<span class="ident">version_id</span>: <span class="ident">DDCA_MCCS_Version_Id</span>) <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>;
 	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_mccs_version_id_desc</span>(<span class="ident">version_id</span>: <span class="ident">DDCA_MCCS_Version_Id</span>) <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>;
+
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_max_max_tries</span>() <span class="op">-&gt;</span> <span class="ident">c_int</span>;
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_get_max_tries</span>(<span class="ident">retry_type</span>: <span class="ident">DDCA_Retry_Type</span>) <span class="op">-&gt;</span> <span class="ident">c_int</span>;
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_set_max_tries</span>(<span class="ident">retry_type</span>: <span class="ident">DDCA_Retry_Type</span>, <span class="ident">max_tries</span>: <span class="ident">c_int</span>) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
+
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_enable_verify</span>(<span class="ident">onoff</span>: <span class="ident">bool</span>);
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_is_verify_enabled</span>() <span class="op">-&gt;</span> <span class="ident">bool</span>;
+
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_get_output_level</span>() <span class="op">-&gt;</span> <span class="ident">DDCA_Output_Level</span>;
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_set_output_level</span>(<span class="ident">newval</span>: <span class="ident">DDCA_Output_Level</span>);
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_enable_report_ddc_errors</span>(<span class="ident">onoff</span>: <span class="ident">bool</span>);
+	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_is_report_ddc_errors_enabled</span>() <span class="op">-&gt;</span> <span class="ident">bool</span>;
 
 	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_get_display_info_list</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Display_Info_List</span>;
 	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_free_display_info_list</span>(<span class="ident">dlist</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Display_Info_List</span>);
@@ -588,6 +622,16 @@
 }
 
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">DDCA_Status</span> <span class="op">=</span> <span class="ident">c_int</span>;
+
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">DDCA_Retry_Type</span> <span class="op">=</span> <span class="ident">c_int</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DDCA_WRITE_ONLY_TRIES</span>: <span class="ident">DDCA_Retry_Type</span> <span class="op">=</span> <span class="number">0</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DDCA_WRITE_READ_TRIES</span>: <span class="ident">DDCA_Retry_Type</span> <span class="op">=</span> <span class="number">1</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DDCA_MULTI_PART_TRIES</span>: <span class="ident">DDCA_Retry_Type</span> <span class="op">=</span> <span class="number">2</span>;
+
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">DDCA_Output_Level</span> <span class="op">=</span> <span class="ident">c_int</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DDCA_OL_TERSE</span>: <span class="ident">DDCA_Output_Level</span> <span class="op">=</span> <span class="number">0x04</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DDCA_OL_NORMAL</span>: <span class="ident">DDCA_Output_Level</span> <span class="op">=</span> <span class="number">0x08</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">DDCA_OL_VERBOSE</span>: <span class="ident">DDCA_Output_Level</span> <span class="op">=</span> <span class="number">0x10</span>;
 
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
