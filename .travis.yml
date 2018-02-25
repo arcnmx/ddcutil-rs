@@ -33,6 +33,7 @@ script:
 - cd $TRAVIS_BUILD_DIR
 - cargo test
 - cargo build
+- cargo build --examples
 deploy:
   provider: script
   script: 'true'
