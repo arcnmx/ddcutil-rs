@@ -1,6 +1,6 @@
 [package]
 name = "ddcutil"
-version = "0.0.2"
+version = "0.0.3"
 authors = ["arcnmx"]
 
 description = "DDC/CI monitor access via libddcutil"
@@ -16,6 +16,6 @@ travis-ci = { repository = "arcnmx/ddcutil-rs" }
 maintenance = { status = "passively-maintained" }
 
 [dependencies]
-ddcutil-sys = { version = "0.0.2", path = "sys" }
+ddcutil-sys = { version = "0.0.3", path = "sys" }
 bitflags = "^1.0.1"
 libc = "^0.2.36"
