@@ -15,6 +15,9 @@ pub struct DisplayInfo {
 	path: DisplayPath,
 }
 
+unsafe impl Send for DisplayInfo { }
+unsafe impl Sync for DisplayInfo { }
+
 impl DisplayInfo {
 	pub fn open(&self) -> ::Result<Display> {
 		unsafe {
@@ -156,6 +159,9 @@ pub struct DisplayInfoList {
 	handle: *mut sys::DDCA_Display_Info_List,
 }
 
+unsafe impl Send for DisplayInfoList { }
+unsafe impl Sync for DisplayInfoList { }
+
 impl fmt::Debug for DisplayInfoList {
 	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
 		f.debug_list().entries(self.into_iter()).finish()
@@ -228,6 +234,7 @@ impl<'a> Iterator for DisplayInfoIter<'a> {
 pub struct Display {
 	handle: sys::DDCA_Display_Handle,
 }
+unsafe impl Send for Display { }
 
 impl Display {
 	pub unsafe fn from_raw(handle: sys::DDCA_Display_Handle) -> Self {
