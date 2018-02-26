@@ -8,193 +8,193 @@ pub type FeatureCode = u8;
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct Value {
-	pub mh: u8,
-	pub ml: u8,
-	pub sh: u8,
-	pub sl: u8,
+    pub mh: u8,
+    pub ml: u8,
+    pub sh: u8,
+    pub sl: u8,
 }
 
 impl Value {
-	pub fn from_raw(raw: &sys::DDCA_Non_Table_Value) -> Self {
-		Value {
-			mh: raw.mh,
-			ml: raw.ml,
-			sh: raw.sh,
-			sl: raw.sl,
-		}
-	}
+    pub fn from_raw(raw: &sys::DDCA_Non_Table_Value) -> Self {
+        Value {
+            mh: raw.mh,
+            ml: raw.ml,
+            sh: raw.sh,
+            sl: raw.sl,
+        }
+    }
 
-	pub fn value(&self) -> u16 {
-		((self.sh as u16) << 8) | self.sl as u16
-	}
+    pub fn value(&self) -> u16 {
+        ((self.sh as u16) << 8) | self.sl as u16
+    }
 
-	pub fn maximum(&self) -> u16 {
-		((self.mh as u16) << 8) | self.ml as u16
-	}
+    pub fn maximum(&self) -> u16 {
+        ((self.mh as u16) << 8) | self.ml as u16
+    }
 }
 
 #[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct MccsVersion {
-	pub major: u8,
-	pub minor: u8,
+    pub major: u8,
+    pub minor: u8,
 }
 
 impl MccsVersion {
-	pub fn from_raw(raw: sys::DDCA_MCCS_Version_Spec) -> Self {
-		MccsVersion {
-			major: raw.major,
-			minor: raw.minor,
-		}
-	}
+    pub fn from_raw(raw: sys::DDCA_MCCS_Version_Spec) -> Self {
+        MccsVersion {
+            major: raw.major,
+            minor: raw.minor,
+        }
+    }
 
-	pub fn from_id(raw: sys::DDCA_MCCS_Version_Id) -> Result<Self, ()> {
-		match raw {
-			sys::DDCA_V10 => Ok(MccsVersion { major: 1, minor: 0 }),
-			sys::DDCA_V20 => Ok(MccsVersion { major: 2, minor: 0 }),
-			sys::DDCA_V21 => Ok(MccsVersion { major: 2, minor: 1 }),
-			sys::DDCA_V30 => Ok(MccsVersion { major: 3, minor: 0 }),
-			sys::DDCA_V22 => Ok(MccsVersion { major: 2, minor: 2 }),
-			_ => Err(()),
-		}
-	}
+    pub fn from_id(raw: sys::DDCA_MCCS_Version_Id) -> Result<Self, ()> {
+        match raw {
+            sys::DDCA_V10 => Ok(MccsVersion { major: 1, minor: 0 }),
+            sys::DDCA_V20 => Ok(MccsVersion { major: 2, minor: 0 }),
+            sys::DDCA_V21 => Ok(MccsVersion { major: 2, minor: 1 }),
+            sys::DDCA_V30 => Ok(MccsVersion { major: 3, minor: 0 }),
+            sys::DDCA_V22 => Ok(MccsVersion { major: 2, minor: 2 }),
+            _ => Err(()),
+        }
+    }
 
-	pub fn id(&self) -> Result<sys::DDCA_MCCS_Version_Id, ()> {
-		match *self {
-			MccsVersion { major: 1, minor: 0 } => Ok(sys::DDCA_V10),
-			MccsVersion { major: 2, minor: 0 } => Ok(sys::DDCA_V20),
-			MccsVersion { major: 2, minor: 1 } => Ok(sys::DDCA_V21),
-			MccsVersion { major: 3, minor: 0 } => Ok(sys::DDCA_V30),
-			MccsVersion { major: 2, minor: 2 } => Ok(sys::DDCA_V22),
-			_ => Err(()),
-		}
-	}
+    pub fn id(&self) -> Result<sys::DDCA_MCCS_Version_Id, ()> {
+        match *self {
+            MccsVersion { major: 1, minor: 0 } => Ok(sys::DDCA_V10),
+            MccsVersion { major: 2, minor: 0 } => Ok(sys::DDCA_V20),
+            MccsVersion { major: 2, minor: 1 } => Ok(sys::DDCA_V21),
+            MccsVersion { major: 3, minor: 0 } => Ok(sys::DDCA_V30),
+            MccsVersion { major: 2, minor: 2 } => Ok(sys::DDCA_V22),
+            _ => Err(()),
+        }
+    }
 }
 
 impl fmt::Display for MccsVersion {
-	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-		write!(f, "{}.{}", self.major, self.minor)
-	}
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}.{}", self.major, self.minor)
+    }
 }
 
 impl fmt::Debug for MccsVersion {
-	fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-		fmt::Display::fmt(self, f)
-	}
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        fmt::Display::fmt(self, f)
+    }
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Capabilities {
-	pub version: MccsVersion,
-	pub features: HashMap<FeatureCode, Vec<u8>>,
+    pub version: MccsVersion,
+    pub features: HashMap<FeatureCode, Vec<u8>>,
 }
 
 impl Capabilities {
-	pub unsafe fn from_raw(raw: &sys::DDCA_Capabilities) -> Self {
-		Capabilities {
-			version: MccsVersion::from_raw(raw.version_spec),
-			features: raw.vcp_codes().iter().map(|raw| (raw.feature_code, raw.values().to_owned())).collect(),
-		}
-	}
+    pub unsafe fn from_raw(raw: &sys::DDCA_Capabilities) -> Self {
+        Capabilities {
+            version: MccsVersion::from_raw(raw.version_spec),
+            features: raw.vcp_codes().iter().map(|raw| (raw.feature_code, raw.values().to_owned())).collect(),
+        }
+    }
 
-	pub fn from_cstr(caps: &CStr) -> ::Result<Self> {
-		unsafe {
-			let mut res = mem::uninitialized();
-			Error::from_status(sys::ddca_parse_capabilities_string(
-				caps.as_ptr() as *mut _, &mut res
-			))?;
-			let caps = Capabilities::from_raw(&*res);
-			sys::ddca_free_parsed_capabilities(res);
-			Ok(caps)
-		}
-	}
+    pub fn from_cstr(caps: &CStr) -> ::Result<Self> {
+        unsafe {
+            let mut res = mem::uninitialized();
+            Error::from_status(sys::ddca_parse_capabilities_string(
+                caps.as_ptr() as *mut _, &mut res
+            ))?;
+            let caps = Capabilities::from_raw(&*res);
+            sys::ddca_free_parsed_capabilities(res);
+            Ok(caps)
+        }
+    }
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct FeatureInfo {
-	pub name: String,
-	pub description: String,
-	pub value_names: HashMap<u8, String>,
-	pub flags: FeatureFlags,
+    pub name: String,
+    pub description: String,
+    pub value_names: HashMap<u8, String>,
+    pub flags: FeatureFlags,
 }
 
 impl FeatureInfo {
-	pub fn from_code(code: FeatureCode, version: MccsVersion) -> ::Result<Self> {
-		unsafe {
-			let mut res = mem::uninitialized();
-			Error::from_status(sys::ddca_get_feature_info_by_vcp_version(
-				code, version.id().unwrap_or(sys::DDCA_VANY), &mut res
-			))?;
-			let features = Self::from_raw(&*res);
-			Error::from_status(sys::ddca_free_feature_info(res))?;
-			Ok(features)
-		}
-	}
+    pub fn from_code(code: FeatureCode, version: MccsVersion) -> ::Result<Self> {
+        unsafe {
+            let mut res = mem::uninitialized();
+            Error::from_status(sys::ddca_get_feature_info_by_vcp_version(
+                code, version.id().unwrap_or(sys::DDCA_VANY), &mut res
+            ))?;
+            let features = Self::from_raw(&*res);
+            Error::from_status(sys::ddca_free_feature_info(res))?;
+            Ok(features)
+        }
+    }
 
-	pub unsafe fn from_raw(raw: &sys::DDCA_Version_Feature_Info) -> Self {
-		unsafe fn from_ptr(ptr: *const c_char) -> String {
-			if ptr.is_null() {
-				Default::default()
-			} else {
-				CStr::from_ptr(ptr).to_string_lossy().into_owned()
-			}
-		}
+    pub unsafe fn from_raw(raw: &sys::DDCA_Version_Feature_Info) -> Self {
+        unsafe fn from_ptr(ptr: *const c_char) -> String {
+            if ptr.is_null() {
+                Default::default()
+            } else {
+                CStr::from_ptr(ptr).to_string_lossy().into_owned()
+            }
+        }
 
-		FeatureInfo {
-			name: from_ptr(raw.feature_name),
-			description: from_ptr(raw.desc),
-			value_names: raw.sl_values().iter().map(|v| (
-				v.value_code,
-				from_ptr(v.value_name),
-			)).collect(),
-			flags: FeatureFlags::from_bits_truncate(raw.feature_flags),
-		}
-	}
+        FeatureInfo {
+            name: from_ptr(raw.feature_name),
+            description: from_ptr(raw.desc),
+            value_names: raw.sl_values().iter().map(|v| (
+                v.value_code,
+                from_ptr(v.value_name),
+            )).collect(),
+            flags: FeatureFlags::from_bits_truncate(raw.feature_flags),
+        }
+    }
 }
 
 bitflags! {
-	pub struct FeatureFlags: u16 {
-		/// Read only feature
-		const RO = 0x0400;
-		/// Write only feature
-		const WO = 0x0200;
-		/// Feature is both readable and writable
-		const RW = 0x0100;
-		/// Feature is either RW or RO
-		const READABLE = Self::RO.bits | Self::RW.bits;
-		/// Feature is either RW or WO
-		const WRITABLE = Self::WO.bits | Self::RW.bits;
+    pub struct FeatureFlags: u16 {
+        /// Read only feature
+        const RO = 0x0400;
+        /// Write only feature
+        const WO = 0x0200;
+        /// Feature is both readable and writable
+        const RW = 0x0100;
+        /// Feature is either RW or RO
+        const READABLE = Self::RO.bits | Self::RW.bits;
+        /// Feature is either RW or WO
+        const WRITABLE = Self::WO.bits | Self::RW.bits;
 
-		/// Normal continuous feature
-		const STD_CONT = 0x0080;
-		/// Continuous feature with special interpretation
-		const COMPLEX_CONT = 0x0040;
-		/// Non-continuous feature, having a defined list of values in byte SL
-		const SIMPLE_NC = 0x0020;
-		/// Non-continuous feature, having a complex interpretation using one or more of SL, SH, ML, MH
-		const COMPLEX_NC = 0x0010;
+        /// Normal continuous feature
+        const STD_CONT = 0x0080;
+        /// Continuous feature with special interpretation
+        const COMPLEX_CONT = 0x0040;
+        /// Non-continuous feature, having a defined list of values in byte SL
+        const SIMPLE_NC = 0x0020;
+        /// Non-continuous feature, having a complex interpretation using one or more of SL, SH, ML, MH
+        const COMPLEX_NC = 0x0010;
 
-		/// Used internally for write-only non-continuous features
-		const WO_NC = 0x0008;
-		/// Normal RW table type feature
-		const NORMAL_TABLE = 0x0004;
-		/// Write only table feature
-		const WO_TABLE = 0x0002;
+        /// Used internally for write-only non-continuous features
+        const WO_NC = 0x0008;
+        /// Normal RW table type feature
+        const NORMAL_TABLE = 0x0004;
+        /// Write only table feature
+        const WO_TABLE = 0x0002;
 
-		/// Continuous feature, of any subtype
-		const CONT = Self::STD_CONT.bits | Self::COMPLEX_CONT.bits;
-		/// Non-continuous feature of any subtype
-		const NC = Self::SIMPLE_NC.bits | Self::COMPLEX_NC.bits | Self::WO_NC.bits;
-		/// Non-table feature of any type
-		const NON_TABLE = Self::CONT.bits | Self::NC.bits;
-		/// Table type feature, of any subtype
-		const TABLE = Self::NORMAL_TABLE.bits | Self::WO_TABLE.bits;
-		/// unused
-		const KNOWN = Self::CONT.bits | Self::NC.bits | Self::TABLE.bits;
+        /// Continuous feature, of any subtype
+        const CONT = Self::STD_CONT.bits | Self::COMPLEX_CONT.bits;
+        /// Non-continuous feature of any subtype
+        const NC = Self::SIMPLE_NC.bits | Self::COMPLEX_NC.bits | Self::WO_NC.bits;
+        /// Non-table feature of any type
+        const NON_TABLE = Self::CONT.bits | Self::NC.bits;
+        /// Table type feature, of any subtype
+        const TABLE = Self::NORMAL_TABLE.bits | Self::WO_TABLE.bits;
+        /// unused
+        const KNOWN = Self::CONT.bits | Self::NC.bits | Self::TABLE.bits;
 
-		/// Feature is deprecated in the specified VCP version
-		const DEPRECATED = 0x0001;
+        /// Feature is deprecated in the specified VCP version
+        const DEPRECATED = 0x0001;
 
-		/// DDCA_Global_Feature_Flags
-		const SYNTHETIC = 0x8000;
-	}
+        /// DDCA_Global_Feature_Flags
+        const SYNTHETIC = 0x8000;
+    }
 }
