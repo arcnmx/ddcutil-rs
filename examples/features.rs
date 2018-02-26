@@ -9,8 +9,8 @@ fn main() {
         for (code, cap) in &caps.features {
             let info = ddc::FeatureInfo::from_code(*code, caps.version);
             if let Ok(info) = info {
-                if info.flags.intersects(ddc::FeatureFlags::READABLE) {
-                    let value = if info.flags.intersects(ddc::FeatureFlags::NON_TABLE) {
+                if info.flags.is_readable() {
+                    let value = if info.flags.is_non_table() {
                         handle.vcp_get_value(*code).map(|v| format!("{} / {}", v.value(), v.maximum()))
                     } else {
                         handle.vcp_get_table(*code).map(|t| format!("{:?}", t))

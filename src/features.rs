@@ -154,47 +154,69 @@ impl FeatureInfo {
 bitflags! {
     pub struct FeatureFlags: u16 {
         /// Read only feature
-        const RO = 0x0400;
+        const RO = sys::DDCA_RO;
         /// Write only feature
-        const WO = 0x0200;
+        const WO = sys::DDCA_WO;
         /// Feature is both readable and writable
-        const RW = 0x0100;
-        /// Feature is either RW or RO
-        const READABLE = Self::RO.bits | Self::RW.bits;
-        /// Feature is either RW or WO
-        const WRITABLE = Self::WO.bits | Self::RW.bits;
+        const RW = sys::DDCA_RW;
 
         /// Normal continuous feature
-        const STD_CONT = 0x0080;
+        const STD_CONT = sys::DDCA_STD_CONT;
         /// Continuous feature with special interpretation
-        const COMPLEX_CONT = 0x0040;
+        const COMPLEX_CONT = sys::DDCA_COMPLEX_CONT;
         /// Non-continuous feature, having a defined list of values in byte SL
-        const SIMPLE_NC = 0x0020;
+        const SIMPLE_NC = sys::DDCA_SIMPLE_NC;
         /// Non-continuous feature, having a complex interpretation using one or more of SL, SH, ML, MH
-        const COMPLEX_NC = 0x0010;
+        const COMPLEX_NC = sys::DDCA_COMPLEX_NC;
 
         /// Used internally for write-only non-continuous features
-        const WO_NC = 0x0008;
+        const WO_NC = sys::DDCA_WO_NC;
         /// Normal RW table type feature
-        const NORMAL_TABLE = 0x0004;
+        const NORMAL_TABLE = sys::DDCA_NORMAL_TABLE;
         /// Write only table feature
-        const WO_TABLE = 0x0002;
-
-        /// Continuous feature, of any subtype
-        const CONT = Self::STD_CONT.bits | Self::COMPLEX_CONT.bits;
-        /// Non-continuous feature of any subtype
-        const NC = Self::SIMPLE_NC.bits | Self::COMPLEX_NC.bits | Self::WO_NC.bits;
-        /// Non-table feature of any type
-        const NON_TABLE = Self::CONT.bits | Self::NC.bits;
-        /// Table type feature, of any subtype
-        const TABLE = Self::NORMAL_TABLE.bits | Self::WO_TABLE.bits;
-        /// unused
-        const KNOWN = Self::CONT.bits | Self::NC.bits | Self::TABLE.bits;
+        const WO_TABLE = sys::DDCA_WO_TABLE;
 
         /// Feature is deprecated in the specified VCP version
-        const DEPRECATED = 0x0001;
+        const DEPRECATED = sys::DDCA_DEPRECATED;
 
         /// DDCA_Global_Feature_Flags
-        const SYNTHETIC = 0x8000;
+        const SYNTHETIC = sys::DDCA_SYNTHETIC;
+    }
+}
+
+impl FeatureFlags {
+    /// Feature is either RW or RO
+    pub fn is_readable(&self) -> bool {
+        self.bits & sys::DDCA_READABLE != 0
+    }
+
+    /// Feature is either RW or WO
+    pub fn is_writable(&self) -> bool {
+        self.bits & sys::DDCA_WRITABLE != 0
+    }
+
+    /// Continuous feature, of any subtype
+    pub fn is_cont(&self) -> bool {
+        self.bits & sys::DDCA_CONT != 0
+    }
+
+    /// Non-continuous feature of any subtype
+    pub fn is_nc(&self) -> bool {
+        self.bits & sys::DDCA_NC != 0
+    }
+
+    /// Non-table feature of any type
+    pub fn is_non_table(&self) -> bool {
+        self.bits & sys::DDCA_NON_TABLE != 0
+    }
+
+    /// Table type feature, of any subtype
+    pub fn is_table(&self) -> bool {
+        self.bits & sys::DDCA_TABLE != 0
+    }
+
+    /// unused
+    pub fn is_known(&self) -> bool {
+        self.bits & sys::DDCA_KNOWN != 0
     }
 }
