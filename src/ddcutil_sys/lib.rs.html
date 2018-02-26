@@ -500,125 +500,125 @@
 <span class="attribute">#[<span class="ident">link</span>(<span class="ident">name</span> <span class="op">=</span> <span class="string">&quot;ddcutil&quot;</span>)]</span>
 <span class="kw">extern</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_ddcutil_version</span>() <span class="op">-&gt;</span> <span class="ident">DDCA_Ddcutil_Version_Spec</span>;
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_ddcutil_version_string</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_ddcutil_version_string</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>;
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_rc_name</span>(<span class="ident">status_code</span>: <span class="ident">DDCA_Status</span>) <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>;
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_rc_desc</span>(<span class="ident">status_code</span>: <span class="ident">DDCA_Status</span>) <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_rc_name</span>(<span class="ident">status_code</span>: <span class="ident">DDCA_Status</span>) <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_rc_desc</span>(<span class="ident">status_code</span>: <span class="ident">DDCA_Status</span>) <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>;
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_mccs_version_id_name</span>(<span class="ident">version_id</span>: <span class="ident">DDCA_MCCS_Version_Id</span>) <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>;
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_mccs_version_id_desc</span>(<span class="ident">version_id</span>: <span class="ident">DDCA_MCCS_Version_Id</span>) <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_mccs_version_id_name</span>(<span class="ident">version_id</span>: <span class="ident">DDCA_MCCS_Version_Id</span>) <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_mccs_version_id_desc</span>(<span class="ident">version_id</span>: <span class="ident">DDCA_MCCS_Version_Id</span>) <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>;
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_max_max_tries</span>() <span class="op">-&gt;</span> <span class="ident">c_int</span>;
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_get_max_tries</span>(<span class="ident">retry_type</span>: <span class="ident">DDCA_Retry_Type</span>) <span class="op">-&gt;</span> <span class="ident">c_int</span>;
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_set_max_tries</span>(<span class="ident">retry_type</span>: <span class="ident">DDCA_Retry_Type</span>, <span class="ident">max_tries</span>: <span class="ident">c_int</span>) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_max_max_tries</span>() <span class="op">-&gt;</span> <span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_get_max_tries</span>(<span class="ident">retry_type</span>: <span class="ident">DDCA_Retry_Type</span>) <span class="op">-&gt;</span> <span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_set_max_tries</span>(<span class="ident">retry_type</span>: <span class="ident">DDCA_Retry_Type</span>, <span class="ident">max_tries</span>: <span class="ident">c_int</span>) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_enable_verify</span>(<span class="ident">onoff</span>: <span class="ident">bool</span>);
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_is_verify_enabled</span>() <span class="op">-&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_enable_verify</span>(<span class="ident">onoff</span>: <span class="ident">bool</span>);
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_is_verify_enabled</span>() <span class="op">-&gt;</span> <span class="ident">bool</span>;
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_get_output_level</span>() <span class="op">-&gt;</span> <span class="ident">DDCA_Output_Level</span>;
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_set_output_level</span>(<span class="ident">newval</span>: <span class="ident">DDCA_Output_Level</span>);
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_enable_report_ddc_errors</span>(<span class="ident">onoff</span>: <span class="ident">bool</span>);
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_is_report_ddc_errors_enabled</span>() <span class="op">-&gt;</span> <span class="ident">bool</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_get_output_level</span>() <span class="op">-&gt;</span> <span class="ident">DDCA_Output_Level</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_set_output_level</span>(<span class="ident">newval</span>: <span class="ident">DDCA_Output_Level</span>);
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_enable_report_ddc_errors</span>(<span class="ident">onoff</span>: <span class="ident">bool</span>);
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_is_report_ddc_errors_enabled</span>() <span class="op">-&gt;</span> <span class="ident">bool</span>;
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_get_display_info_list</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Display_Info_List</span>;
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_free_display_info_list</span>(<span class="ident">dlist</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Display_Info_List</span>);
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_report_display_info</span>(<span class="ident">dinfo</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Display_Info</span>, <span class="ident">depth</span>: <span class="ident">c_int</span>);
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_report_display_info_list</span>(<span class="ident">dlist</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Display_Info_List</span>, <span class="ident">depth</span>: <span class="ident">c_int</span>);
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_report_active_displays</span>(<span class="ident">depth</span>: <span class="ident">c_int</span>) <span class="op">-&gt;</span> <span class="ident">c_int</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_get_display_info_list</span>() <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Display_Info_List</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_free_display_info_list</span>(<span class="ident">dlist</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Display_Info_List</span>);
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_report_display_info</span>(<span class="ident">dinfo</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Display_Info</span>, <span class="ident">depth</span>: <span class="ident">c_int</span>);
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_report_display_info_list</span>(<span class="ident">dlist</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Display_Info_List</span>, <span class="ident">depth</span>: <span class="ident">c_int</span>);
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_report_active_displays</span>(<span class="ident">depth</span>: <span class="ident">c_int</span>) <span class="op">-&gt;</span> <span class="ident">c_int</span>;
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_open_display</span>(
-		<span class="ident">ddca_dref</span>: <span class="ident">DDCA_Display_Ref</span>,
-		<span class="ident">p_ddca_dh</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Display_Handle</span>,
-	) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_close_display</span>(<span class="ident">ddca_dh</span>: <span class="ident">DDCA_Display_Handle</span>) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_open_display</span>(
+        <span class="ident">ddca_dref</span>: <span class="ident">DDCA_Display_Ref</span>,
+        <span class="ident">p_ddca_dh</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Display_Handle</span>,
+    ) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_close_display</span>(<span class="ident">ddca_dh</span>: <span class="ident">DDCA_Display_Handle</span>) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_get_capabilities_string</span>(
-		<span class="ident">ddca_dh</span>: <span class="ident">DDCA_Display_Handle</span>,
-		<span class="ident">p_caps</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>,
-	) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_get_capabilities_string</span>(
+        <span class="ident">ddca_dh</span>: <span class="ident">DDCA_Display_Handle</span>,
+        <span class="ident">p_caps</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>,
+    ) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_parse_capabilities_string</span>(
-		<span class="ident">capabilities_string</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>,
-		<span class="ident">p_parsed_capabilities</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Capabilities</span>,
-	) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_parse_capabilities_string</span>(
+        <span class="ident">capabilities_string</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>,
+        <span class="ident">p_parsed_capabilities</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Capabilities</span>,
+    ) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_free_parsed_capabilities</span>(
-		<span class="ident">pcaps</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Capabilities</span>,
-	);
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_free_parsed_capabilities</span>(
+        <span class="ident">pcaps</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Capabilities</span>,
+    );
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_report_parsed_capabilities</span>(
-		<span class="ident">pcaps</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Capabilities</span>,
-		<span class="ident">depth</span>: <span class="ident">c_int</span>,
-	);
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_report_parsed_capabilities</span>(
+        <span class="ident">pcaps</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Capabilities</span>,
+        <span class="ident">depth</span>: <span class="ident">c_int</span>,
+    );
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_get_feature_info_by_vcp_version</span>(
-		<span class="ident">feature_code</span>: <span class="ident">DDCA_Vcp_Feature_Code</span>,
-		<span class="ident">mccs_version_id</span>: <span class="ident">DDCA_MCCS_Version_Id</span>,
-		<span class="ident">p_info</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Version_Feature_Info</span>,
-	) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_get_feature_info_by_vcp_version</span>(
+        <span class="ident">feature_code</span>: <span class="ident">DDCA_Vcp_Feature_Code</span>,
+        <span class="ident">mccs_version_id</span>: <span class="ident">DDCA_MCCS_Version_Id</span>,
+        <span class="ident">p_info</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Version_Feature_Info</span>,
+    ) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_get_feature_name</span>(<span class="ident">feature_code</span>: <span class="ident">DDCA_Vcp_Feature_Code</span>) <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_get_feature_name</span>(<span class="ident">feature_code</span>: <span class="ident">DDCA_Vcp_Feature_Code</span>) <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>;
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_get_simple_sl_value_table</span>(
-		<span class="ident">feature_code</span>: <span class="ident">DDCA_Vcp_Feature_Code</span>,
-		<span class="ident">mccs_version_id</span>: <span class="ident">DDCA_MCCS_Version_Id</span>,
-		<span class="ident">p_value_table</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Feature_Value_Table</span>,
-	) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_get_simple_sl_value_table</span>(
+        <span class="ident">feature_code</span>: <span class="ident">DDCA_Vcp_Feature_Code</span>,
+        <span class="ident">mccs_version_id</span>: <span class="ident">DDCA_MCCS_Version_Id</span>,
+        <span class="ident">p_value_table</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Feature_Value_Table</span>,
+    ) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_get_simple_nc_feature_value_name</span>(
-		<span class="ident">ddca_dh</span>: <span class="ident">DDCA_Display_Handle</span>,
-		<span class="ident">feature_code</span>: <span class="ident">DDCA_Vcp_Feature_Code</span>,
-		<span class="ident">feature_value</span>: <span class="ident">u8</span>,
-		<span class="ident">p_feature_name</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>,
-	) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_get_simple_nc_feature_value_name</span>(
+        <span class="ident">ddca_dh</span>: <span class="ident">DDCA_Display_Handle</span>,
+        <span class="ident">feature_code</span>: <span class="ident">DDCA_Vcp_Feature_Code</span>,
+        <span class="ident">feature_value</span>: <span class="ident">u8</span>,
+        <span class="ident">p_feature_name</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>,
+    ) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_free_feature_info</span>(<span class="ident">info</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Version_Feature_Info</span>) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_free_feature_info</span>(<span class="ident">info</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Version_Feature_Info</span>) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_get_mccs_version</span>(
-		<span class="ident">ddca_dh</span>: <span class="ident">DDCA_Display_Handle</span>,
-		<span class="ident">pspec</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_MCCS_Version_Spec</span>,
-	) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_get_mccs_version</span>(
+        <span class="ident">ddca_dh</span>: <span class="ident">DDCA_Display_Handle</span>,
+        <span class="ident">pspec</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_MCCS_Version_Spec</span>,
+    ) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_get_mccs_version_id</span>(
-		<span class="ident">ddca_dh</span>: <span class="ident">DDCA_Display_Handle</span>,
-		<span class="ident">p_id</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_MCCS_Version_Id</span>,
-	) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_get_mccs_version_id</span>(
+        <span class="ident">ddca_dh</span>: <span class="ident">DDCA_Display_Handle</span>,
+        <span class="ident">p_id</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_MCCS_Version_Id</span>,
+    ) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
 
-	<span class="doccomment">/// do not free</span>
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_get_edid_by_display_ref</span>(
-		<span class="ident">ddca_dref</span>: <span class="ident">DDCA_Display_Ref</span>,
-		<span class="ident">pbytes</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>,
-	) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
+    <span class="doccomment">/// do not free</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_get_edid_by_display_ref</span>(
+        <span class="ident">ddca_dref</span>: <span class="ident">DDCA_Display_Ref</span>,
+        <span class="ident">pbytes</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>,
+    ) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_free_table_value_response</span>(
-		<span class="ident">table_value_response</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Table_Value</span>,
-	);
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_free_table_value_response</span>(
+        <span class="ident">table_value_response</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Table_Value</span>,
+    );
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_get_any_vcp_value</span>(
-		<span class="ident">ddca_dh</span>: <span class="ident">DDCA_Display_Handle</span>,
-		<span class="ident">feature_code</span>: <span class="ident">DDCA_Vcp_Feature_Code</span>,
-		<span class="ident">value_type</span>: <span class="ident">DDCA_Vcp_Value_Type_Parm</span>,
-		<span class="ident">pvalrec</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Any_Vcp_Value</span>,
-	) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_get_any_vcp_value</span>(
+        <span class="ident">ddca_dh</span>: <span class="ident">DDCA_Display_Handle</span>,
+        <span class="ident">feature_code</span>: <span class="ident">DDCA_Vcp_Feature_Code</span>,
+        <span class="ident">value_type</span>: <span class="ident">DDCA_Vcp_Value_Type_Parm</span>,
+        <span class="ident">pvalrec</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Any_Vcp_Value</span>,
+    ) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_set_continuous_vcp_value</span>(
-		<span class="ident">ddca_dh</span>: <span class="ident">DDCA_Display_Handle</span>,
-		<span class="ident">feature_code</span>: <span class="ident">DDCA_Vcp_Feature_Code</span>,
-		<span class="ident">new_value</span>: <span class="ident">c_int</span>,
-	) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_set_continuous_vcp_value</span>(
+        <span class="ident">ddca_dh</span>: <span class="ident">DDCA_Display_Handle</span>,
+        <span class="ident">feature_code</span>: <span class="ident">DDCA_Vcp_Feature_Code</span>,
+        <span class="ident">new_value</span>: <span class="ident">c_int</span>,
+    ) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_set_simple_nc_vcp_value</span>(
-		<span class="ident">ddca_dh</span>: <span class="ident">DDCA_Display_Handle</span>,
-		<span class="ident">feature_code</span>: <span class="ident">DDCA_Vcp_Feature_Code</span>,
-		<span class="ident">new_value</span>: <span class="ident">u8</span>,
-	) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_set_simple_nc_vcp_value</span>(
+        <span class="ident">ddca_dh</span>: <span class="ident">DDCA_Display_Handle</span>,
+        <span class="ident">feature_code</span>: <span class="ident">DDCA_Vcp_Feature_Code</span>,
+        <span class="ident">new_value</span>: <span class="ident">u8</span>,
+    ) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_set_raw_vcp_value</span>(
-		<span class="ident">ddca_dh</span>: <span class="ident">DDCA_Display_Handle</span>,
-		<span class="ident">feature_code</span>: <span class="ident">DDCA_Vcp_Feature_Code</span>,
-		<span class="ident">hi_byte</span>: <span class="ident">u8</span>,
-		<span class="ident">lo_byte</span>: <span class="ident">u8</span>,
-	) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">ddca_set_raw_vcp_value</span>(
+        <span class="ident">ddca_dh</span>: <span class="ident">DDCA_Display_Handle</span>,
+        <span class="ident">feature_code</span>: <span class="ident">DDCA_Vcp_Feature_Code</span>,
+        <span class="ident">hi_byte</span>: <span class="ident">u8</span>,
+        <span class="ident">lo_byte</span>: <span class="ident">u8</span>,
+    ) <span class="op">-&gt;</span> <span class="ident">DDCA_Status</span>;
 }
 
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">DDCA_Status</span> <span class="op">=</span> <span class="ident">c_int</span>;
@@ -636,9 +636,9 @@
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DDCA_Ddcutil_Version_Spec</span> {
-	<span class="kw">pub</span> <span class="ident">major</span>: <span class="ident">u8</span>,
-	<span class="kw">pub</span> <span class="ident">minor</span>: <span class="ident">u8</span>,
-	<span class="kw">pub</span> <span class="ident">micro</span>: <span class="ident">u8</span>,
+    <span class="kw">pub</span> <span class="ident">major</span>: <span class="ident">u8</span>,
+    <span class="kw">pub</span> <span class="ident">minor</span>: <span class="ident">u8</span>,
+    <span class="kw">pub</span> <span class="ident">micro</span>: <span class="ident">u8</span>,
 }
 
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">DDCA_Display_Identifier</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>;
@@ -650,8 +650,8 @@
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DDCA_Adlno</span> {
-	<span class="kw">pub</span> <span class="ident">iAdapterIndex</span>: <span class="ident">c_int</span>,
-	<span class="kw">pub</span> <span class="ident">iDisplayIndex</span>: <span class="ident">c_int</span>,
+    <span class="kw">pub</span> <span class="ident">iAdapterIndex</span>: <span class="ident">c_int</span>,
+    <span class="kw">pub</span> <span class="ident">iDisplayIndex</span>: <span class="ident">c_int</span>,
 }
 
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">DDCA_IO_Mode</span> <span class="op">=</span> <span class="ident">c_int</span>;
@@ -662,73 +662,73 @@
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DDCA_IO_Path</span> {
-	<span class="kw">pub</span> <span class="ident">io_mode</span>: <span class="ident">DDCA_IO_Mode</span>,
-	<span class="comment">// union { i2c_busno: c_int, adlno: DDCA_Adlno: adlno, hiddev_devno: c_int }</span>
-	<span class="kw">pub</span> <span class="ident">_union</span>: <span class="ident">DDCA_Adlno</span>,
+    <span class="kw">pub</span> <span class="ident">io_mode</span>: <span class="ident">DDCA_IO_Mode</span>,
+    <span class="comment">// union { i2c_busno: c_int, adlno: DDCA_Adlno: adlno, hiddev_devno: c_int }</span>
+    <span class="kw">pub</span> <span class="ident">_union</span>: <span class="ident">DDCA_Adlno</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">DDCA_IO_Path</span> {
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">i2c_busno</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">c_int</span> {
-		<span class="self">self</span>.<span class="ident">_union</span>.<span class="ident">iAdapterIndex</span>
-	}
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">i2c_busno</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">c_int</span> {
+        <span class="self">self</span>.<span class="ident">_union</span>.<span class="ident">iAdapterIndex</span>
+    }
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">hiddev_devno</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">c_int</span> {
-		<span class="self">self</span>.<span class="ident">_union</span>.<span class="ident">iAdapterIndex</span>
-	}
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">hiddev_devno</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">c_int</span> {
+        <span class="self">self</span>.<span class="ident">_union</span>.<span class="ident">iAdapterIndex</span>
+    }
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">adlno</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">DDCA_Adlno</span> {
-		<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">_union</span>
-	}
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">adlno</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">DDCA_Adlno</span> {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">_union</span>
+    }
 }
 
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DDCA_Display_Info</span> {
-	<span class="kw">pub</span> <span class="ident">marker</span>: [<span class="ident">c_char</span>; <span class="number">4</span>],
-	<span class="kw">pub</span> <span class="ident">dispno</span>: <span class="ident">c_int</span>,
-	<span class="kw">pub</span> <span class="ident">path</span>: <span class="ident">DDCA_IO_Path</span>,
-	<span class="kw">pub</span> <span class="ident">usb_bus</span>: <span class="ident">c_int</span>,
-	<span class="kw">pub</span> <span class="ident">usb_device</span>: <span class="ident">c_int</span>,
-	<span class="kw">pub</span> <span class="ident">mfg_id</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>,
-	<span class="kw">pub</span> <span class="ident">model_name</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>,
-	<span class="kw">pub</span> <span class="ident">sn</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>,
-	<span class="kw">pub</span> <span class="ident">edid_bytes</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
-	<span class="kw">pub</span> <span class="ident">dref</span>: <span class="ident">DDCA_Display_Ref</span>,
+    <span class="kw">pub</span> <span class="ident">marker</span>: [<span class="ident">c_char</span>; <span class="number">4</span>],
+    <span class="kw">pub</span> <span class="ident">dispno</span>: <span class="ident">c_int</span>,
+    <span class="kw">pub</span> <span class="ident">path</span>: <span class="ident">DDCA_IO_Path</span>,
+    <span class="kw">pub</span> <span class="ident">usb_bus</span>: <span class="ident">c_int</span>,
+    <span class="kw">pub</span> <span class="ident">usb_device</span>: <span class="ident">c_int</span>,
+    <span class="kw">pub</span> <span class="ident">mfg_id</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>,
+    <span class="kw">pub</span> <span class="ident">model_name</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>,
+    <span class="kw">pub</span> <span class="ident">sn</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>,
+    <span class="kw">pub</span> <span class="ident">edid_bytes</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
+    <span class="kw">pub</span> <span class="ident">dref</span>: <span class="ident">DDCA_Display_Ref</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">DDCA_Display_Info</span> {
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">edid_bytes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
-		<span class="kw">unsafe</span> {
-			<span class="ident">from_raw_parts</span>(<span class="self">self</span>.<span class="ident">edid_bytes</span>, <span class="number">0x80</span>)
-		}
-	}
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">edid_bytes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
+        <span class="kw">unsafe</span> {
+            <span class="ident">from_raw_parts</span>(<span class="self">self</span>.<span class="ident">edid_bytes</span>, <span class="number">0x80</span>)
+        }
+    }
 }
 
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DDCA_Display_Info_List</span> {
-	<span class="kw">pub</span> <span class="ident">ct</span>: <span class="ident">c_int</span>,
-	<span class="kw">pub</span> <span class="ident">info</span>: [<span class="ident">DDCA_Display_Info</span>; <span class="number">0</span>],
+    <span class="kw">pub</span> <span class="ident">ct</span>: <span class="ident">c_int</span>,
+    <span class="kw">pub</span> <span class="ident">info</span>: [<span class="ident">DDCA_Display_Info</span>; <span class="number">0</span>],
 }
 
 <span class="kw">impl</span> <span class="ident">DDCA_Display_Info_List</span> {
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">info</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">DDCA_Display_Info</span>] {
-		<span class="kw">unsafe</span> {
-			<span class="ident">from_raw_parts</span>(<span class="self">self</span>.<span class="ident">info</span>.<span class="ident">as_ptr</span>(), <span class="self">self</span>.<span class="ident">ct</span> <span class="kw">as</span> <span class="ident">usize</span>)
-		}
-	}
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">info</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">DDCA_Display_Info</span>] {
+        <span class="kw">unsafe</span> {
+            <span class="ident">from_raw_parts</span>(<span class="self">self</span>.<span class="ident">info</span>.<span class="ident">as_ptr</span>(), <span class="self">self</span>.<span class="ident">ct</span> <span class="kw">as</span> <span class="ident">usize</span>)
+        }
+    }
 }
 
 <span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">DDCA_Display_Info_List</span> {
-	<span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
-		<span class="ident">fmt</span>::<span class="ident">Debug</span>::<span class="ident">fmt</span>(<span class="self">self</span>.<span class="ident">info</span>(), <span class="ident">f</span>)
-	}
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+        <span class="ident">fmt</span>::<span class="ident">Debug</span>::<span class="ident">fmt</span>(<span class="self">self</span>.<span class="ident">info</span>(), <span class="ident">f</span>)
+    }
 }
 
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DDCA_MCCS_Version_Spec</span> {
-	<span class="kw">pub</span> <span class="ident">major</span>: <span class="ident">u8</span>,
-	<span class="kw">pub</span> <span class="ident">minor</span>: <span class="ident">u8</span>,
+    <span class="kw">pub</span> <span class="ident">major</span>: <span class="ident">u8</span>,
+    <span class="kw">pub</span> <span class="ident">minor</span>: <span class="ident">u8</span>,
 }
 
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">DDCA_MCCS_Version_Id</span> <span class="op">=</span> <span class="ident">c_int</span>;
@@ -747,8 +747,8 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="doccomment">/// an entry of {0, NULL} terminates the list</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DDCA_Feature_Value_Entry</span> {
-	<span class="kw">pub</span> <span class="ident">value_code</span>: <span class="ident">u8</span>,
-	<span class="kw">pub</span> <span class="ident">value_name</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>,
+    <span class="kw">pub</span> <span class="ident">value_code</span>: <span class="ident">u8</span>,
+    <span class="kw">pub</span> <span class="ident">value_name</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>,
 }
 
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">DDCA_Feature_Value_Table</span> <span class="op">=</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Feature_Value_Entry</span>;
@@ -782,80 +782,80 @@
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DDCA_Version_Feature_Info</span> {
-	<span class="kw">pub</span> <span class="ident">marker</span>: [<span class="ident">c_char</span>; <span class="number">4</span>],
-	<span class="kw">pub</span> <span class="ident">feature_code</span>: <span class="ident">DDCA_Vcp_Feature_Code</span>,
-	<span class="kw">pub</span> <span class="ident">vspec</span>: <span class="ident">DDCA_MCCS_Version_Spec</span>,
-	<span class="kw">pub</span> <span class="ident">version_id</span>: <span class="ident">DDCA_MCCS_Version_Id</span>,
-	<span class="kw">pub</span> <span class="ident">desc</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>,
-	<span class="doccomment">/// valid when DDCA_SIMPLE_NC set</span>
-	<span class="kw">pub</span> <span class="ident">sl_values</span>: <span class="ident">DDCA_Feature_Value_Table</span>,
-	<span class="kw">pub</span> <span class="ident">feature_name</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>,
-	<span class="kw">pub</span> <span class="ident">feature_flags</span>: <span class="ident">DDCA_Feature_Flags</span>,
+    <span class="kw">pub</span> <span class="ident">marker</span>: [<span class="ident">c_char</span>; <span class="number">4</span>],
+    <span class="kw">pub</span> <span class="ident">feature_code</span>: <span class="ident">DDCA_Vcp_Feature_Code</span>,
+    <span class="kw">pub</span> <span class="ident">vspec</span>: <span class="ident">DDCA_MCCS_Version_Spec</span>,
+    <span class="kw">pub</span> <span class="ident">version_id</span>: <span class="ident">DDCA_MCCS_Version_Id</span>,
+    <span class="kw">pub</span> <span class="ident">desc</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>,
+    <span class="doccomment">/// valid when DDCA_SIMPLE_NC set</span>
+    <span class="kw">pub</span> <span class="ident">sl_values</span>: <span class="ident">DDCA_Feature_Value_Table</span>,
+    <span class="kw">pub</span> <span class="ident">feature_name</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>,
+    <span class="kw">pub</span> <span class="ident">feature_flags</span>: <span class="ident">DDCA_Feature_Flags</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">DDCA_Version_Feature_Info</span> {
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sl_values_len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
-		<span class="kw">if</span> <span class="self">self</span>.<span class="ident">feature_flags</span> <span class="op">&amp;</span> <span class="ident">DDCA_SIMPLE_NC</span> <span class="op">!=</span> <span class="number">0</span> {
-			<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">sl_values</span>;
-			<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">len</span> <span class="op">=</span> <span class="number">0</span>;
-			<span class="kw">unsafe</span> {
-				<span class="kw">while</span> (<span class="kw-2">*</span><span class="ident">ptr</span>).<span class="ident">value_code</span> <span class="op">!=</span> <span class="number">0</span> <span class="op">||</span> <span class="op">!</span>(<span class="kw-2">*</span><span class="ident">ptr</span>).<span class="ident">value_name</span>.<span class="ident">is_null</span>() {
-					<span class="ident">ptr</span> <span class="op">=</span> <span class="ident">ptr</span>.<span class="ident">offset</span>(<span class="number">1</span>);
-					<span class="ident">len</span> <span class="op">+=</span> <span class="number">1</span>;
-				}
-			}
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sl_values_len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
+        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">feature_flags</span> <span class="op">&amp;</span> <span class="ident">DDCA_SIMPLE_NC</span> <span class="op">!=</span> <span class="number">0</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">sl_values</span>;
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">len</span> <span class="op">=</span> <span class="number">0</span>;
+            <span class="kw">unsafe</span> {
+                <span class="kw">while</span> (<span class="kw-2">*</span><span class="ident">ptr</span>).<span class="ident">value_code</span> <span class="op">!=</span> <span class="number">0</span> <span class="op">||</span> <span class="op">!</span>(<span class="kw-2">*</span><span class="ident">ptr</span>).<span class="ident">value_name</span>.<span class="ident">is_null</span>() {
+                    <span class="ident">ptr</span> <span class="op">=</span> <span class="ident">ptr</span>.<span class="ident">offset</span>(<span class="number">1</span>);
+                    <span class="ident">len</span> <span class="op">+=</span> <span class="number">1</span>;
+                }
+            }
 
-			<span class="ident">len</span>
-		} <span class="kw">else</span> {
-			<span class="number">0</span>
-		}
-	}
+            <span class="ident">len</span>
+        } <span class="kw">else</span> {
+            <span class="number">0</span>
+        }
+    }
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sl_values</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">DDCA_Feature_Value_Entry</span>] {
-		<span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">sl_values_len</span>();
-		<span class="kw">if</span> <span class="ident">len</span> <span class="op">==</span> <span class="number">0</span> {
-			<span class="kw-2">&amp;</span>[]
-		} <span class="kw">else</span> {
-			<span class="kw">unsafe</span> {
-				<span class="ident">from_raw_parts</span>(<span class="self">self</span>.<span class="ident">sl_values</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> _, <span class="ident">len</span>)
-			}
-		}
-	}
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sl_values</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">DDCA_Feature_Value_Entry</span>] {
+        <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">sl_values_len</span>();
+        <span class="kw">if</span> <span class="ident">len</span> <span class="op">==</span> <span class="number">0</span> {
+            <span class="kw-2">&amp;</span>[]
+        } <span class="kw">else</span> {
+            <span class="kw">unsafe</span> {
+                <span class="ident">from_raw_parts</span>(<span class="self">self</span>.<span class="ident">sl_values</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> _, <span class="ident">len</span>)
+            }
+        }
+    }
 }
 
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DDCA_Cap_Vcp</span> {
-	<span class="kw">pub</span> <span class="ident">marker</span>: [<span class="ident">c_char</span>; <span class="number">4</span>],
-	<span class="kw">pub</span> <span class="ident">feature_code</span>: <span class="ident">DDCA_Vcp_Feature_Code</span>,
-	<span class="kw">pub</span> <span class="ident">value_ct</span>: <span class="ident">c_int</span>,
-	<span class="kw">pub</span> <span class="ident">values</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>,
+    <span class="kw">pub</span> <span class="ident">marker</span>: [<span class="ident">c_char</span>; <span class="number">4</span>],
+    <span class="kw">pub</span> <span class="ident">feature_code</span>: <span class="ident">DDCA_Vcp_Feature_Code</span>,
+    <span class="kw">pub</span> <span class="ident">value_ct</span>: <span class="ident">c_int</span>,
+    <span class="kw">pub</span> <span class="ident">values</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">DDCA_Cap_Vcp</span> {
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">values</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
-		<span class="kw">unsafe</span> {
-			<span class="ident">from_raw_parts</span>(<span class="self">self</span>.<span class="ident">values</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> _, <span class="self">self</span>.<span class="ident">value_ct</span> <span class="kw">as</span> <span class="ident">usize</span>)
-		}
-	}
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">values</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
+        <span class="kw">unsafe</span> {
+            <span class="ident">from_raw_parts</span>(<span class="self">self</span>.<span class="ident">values</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> _, <span class="self">self</span>.<span class="ident">value_ct</span> <span class="kw">as</span> <span class="ident">usize</span>)
+        }
+    }
 }
 
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DDCA_Capabilities</span> {
-	<span class="kw">pub</span> <span class="ident">marker</span>: [<span class="ident">c_char</span>; <span class="number">4</span>],
-	<span class="kw">pub</span> <span class="ident">unparsed_string</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>,
-	<span class="kw">pub</span> <span class="ident">version_spec</span>: <span class="ident">DDCA_MCCS_Version_Spec</span>,
-	<span class="kw">pub</span> <span class="ident">vcp_code_ct</span>: <span class="ident">c_int</span>,
-	<span class="kw">pub</span> <span class="ident">vcp_codes</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Cap_Vcp</span>,
+    <span class="kw">pub</span> <span class="ident">marker</span>: [<span class="ident">c_char</span>; <span class="number">4</span>],
+    <span class="kw">pub</span> <span class="ident">unparsed_string</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_char</span>,
+    <span class="kw">pub</span> <span class="ident">version_spec</span>: <span class="ident">DDCA_MCCS_Version_Spec</span>,
+    <span class="kw">pub</span> <span class="ident">vcp_code_ct</span>: <span class="ident">c_int</span>,
+    <span class="kw">pub</span> <span class="ident">vcp_codes</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">DDCA_Cap_Vcp</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">DDCA_Capabilities</span> {
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">vcp_codes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">DDCA_Cap_Vcp</span>] {
-		<span class="kw">unsafe</span> {
-			<span class="ident">from_raw_parts</span>(<span class="self">self</span>.<span class="ident">vcp_codes</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> _, <span class="self">self</span>.<span class="ident">vcp_code_ct</span> <span class="kw">as</span> <span class="ident">usize</span>)
-		}
-	}
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">vcp_codes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">DDCA_Cap_Vcp</span>] {
+        <span class="kw">unsafe</span> {
+            <span class="ident">from_raw_parts</span>(<span class="self">self</span>.<span class="ident">vcp_codes</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> _, <span class="self">self</span>.<span class="ident">vcp_code_ct</span> <span class="kw">as</span> <span class="ident">usize</span>)
+        }
+    }
 }
 
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">DDCA_Vcp_Value_Type</span> <span class="op">=</span> <span class="ident">c_int</span>;
@@ -870,66 +870,66 @@
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DDCA_Non_Table_Value</span> {
-	<span class="kw">pub</span> <span class="ident">mh</span>: <span class="ident">u8</span>,
-	<span class="kw">pub</span> <span class="ident">ml</span>: <span class="ident">u8</span>,
-	<span class="kw">pub</span> <span class="ident">sh</span>: <span class="ident">u8</span>,
-	<span class="kw">pub</span> <span class="ident">sl</span>: <span class="ident">u8</span>,
+    <span class="kw">pub</span> <span class="ident">mh</span>: <span class="ident">u8</span>,
+    <span class="kw">pub</span> <span class="ident">ml</span>: <span class="ident">u8</span>,
+    <span class="kw">pub</span> <span class="ident">sh</span>: <span class="ident">u8</span>,
+    <span class="kw">pub</span> <span class="ident">sl</span>: <span class="ident">u8</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">DDCA_Non_Table_Value</span> {
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u16</span> {
-		((<span class="self">self</span>.<span class="ident">sh</span> <span class="kw">as</span> <span class="ident">u16</span>) <span class="op">&lt;&lt;</span> <span class="number">8</span>) <span class="op">|</span> <span class="self">self</span>.<span class="ident">sl</span> <span class="kw">as</span> <span class="ident">u16</span>
-	}
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">value</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u16</span> {
+        ((<span class="self">self</span>.<span class="ident">sh</span> <span class="kw">as</span> <span class="ident">u16</span>) <span class="op">&lt;&lt;</span> <span class="number">8</span>) <span class="op">|</span> <span class="self">self</span>.<span class="ident">sl</span> <span class="kw">as</span> <span class="ident">u16</span>
+    }
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">maximum</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u16</span> {
-		((<span class="self">self</span>.<span class="ident">mh</span> <span class="kw">as</span> <span class="ident">u16</span>) <span class="op">&lt;&lt;</span> <span class="number">8</span>) <span class="op">|</span> <span class="self">self</span>.<span class="ident">ml</span> <span class="kw">as</span> <span class="ident">u16</span>
-	}
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">maximum</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">u16</span> {
+        ((<span class="self">self</span>.<span class="ident">mh</span> <span class="kw">as</span> <span class="ident">u16</span>) <span class="op">&lt;&lt;</span> <span class="number">8</span>) <span class="op">|</span> <span class="self">self</span>.<span class="ident">ml</span> <span class="kw">as</span> <span class="ident">u16</span>
+    }
 }
 
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DDCA_Table_Value</span> {
-	<span class="kw">pub</span> <span class="ident">bytect</span>: <span class="ident">u16</span>,
-	<span class="kw">pub</span> <span class="ident">bytes</span>: [<span class="ident">u8</span>; <span class="number">0</span>],
+    <span class="kw">pub</span> <span class="ident">bytect</span>: <span class="ident">u16</span>,
+    <span class="kw">pub</span> <span class="ident">bytes</span>: [<span class="ident">u8</span>; <span class="number">0</span>],
 }
 
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_DDCA_Table_Value</span> {
-	<span class="kw">pub</span> <span class="ident">bytes</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>,
-	<span class="kw">pub</span> <span class="ident">bytect</span>: <span class="ident">u16</span>,
+    <span class="kw">pub</span> <span class="ident">bytes</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>,
+    <span class="kw">pub</span> <span class="ident">bytect</span>: <span class="ident">u16</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">_DDCA_Table_Value</span> {
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bytes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
-		<span class="kw">unsafe</span> {
-			<span class="ident">from_raw_parts</span>(<span class="self">self</span>.<span class="ident">bytes</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> _, <span class="self">self</span>.<span class="ident">bytect</span> <span class="kw">as</span> <span class="ident">usize</span>)
-		}
-	}
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">bytes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
+        <span class="kw">unsafe</span> {
+            <span class="ident">from_raw_parts</span>(<span class="self">self</span>.<span class="ident">bytes</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> _, <span class="self">self</span>.<span class="ident">bytect</span> <span class="kw">as</span> <span class="ident">usize</span>)
+        }
+    }
 }
 
 <span class="kw">impl</span> <span class="ident">fmt</span>::<span class="ident">Debug</span> <span class="kw">for</span> <span class="ident">_DDCA_Table_Value</span> {
-	<span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
-		<span class="ident">fmt</span>::<span class="ident">Debug</span>::<span class="ident">fmt</span>(<span class="self">self</span>.<span class="ident">bytes</span>(), <span class="ident">f</span>)
-	}
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span> {
+        <span class="ident">fmt</span>::<span class="ident">Debug</span>::<span class="ident">fmt</span>(<span class="self">self</span>.<span class="ident">bytes</span>(), <span class="ident">f</span>)
+    }
 }
 
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DDCA_Any_Vcp_Value</span> {
-	<span class="kw">pub</span> <span class="ident">opcode</span>: <span class="ident">DDCA_Vcp_Feature_Code</span>,
-	<span class="kw">pub</span> <span class="ident">value_type</span>: <span class="ident">DDCA_Vcp_Value_Type</span>,
-	<span class="comment">// union { _DDCA_Table_Value, DDCA_Non_Table_Value }</span>
-	<span class="kw">pub</span> <span class="ident">_val_union</span>: <span class="ident">_DDCA_Table_Value</span>,
+    <span class="kw">pub</span> <span class="ident">opcode</span>: <span class="ident">DDCA_Vcp_Feature_Code</span>,
+    <span class="kw">pub</span> <span class="ident">value_type</span>: <span class="ident">DDCA_Vcp_Value_Type</span>,
+    <span class="comment">// union { _DDCA_Table_Value, DDCA_Non_Table_Value }</span>
+    <span class="kw">pub</span> <span class="ident">_val_union</span>: <span class="ident">_DDCA_Table_Value</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">DDCA_Any_Vcp_Value</span> {
-	<span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">c_nc</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">DDCA_Non_Table_Value</span> {
-		::<span class="ident">std</span>::<span class="ident">mem</span>::<span class="ident">transmute</span>(<span class="self">self</span>.<span class="ident">t</span>())
-	}
+    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">c_nc</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">DDCA_Non_Table_Value</span> {
+        ::<span class="ident">std</span>::<span class="ident">mem</span>::<span class="ident">transmute</span>(<span class="self">self</span>.<span class="ident">t</span>())
+    }
 
-	<span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">t</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">_DDCA_Table_Value</span> {
-		<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">_val_union</span>
-	}
+    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">t</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="ident">_DDCA_Table_Value</span> {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">_val_union</span>
+    }
 }
 </pre>
 </section>

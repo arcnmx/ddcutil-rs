@@ -220,138 +220,138 @@
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">Version</span> <span class="op">=</span> <span class="ident">sys</span>::<span class="ident">DDCA_Ddcutil_Version_Spec</span>;
 
 <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">c_str</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">libc</span>::<span class="ident">c_char</span>) <span class="op">-&gt;</span> <span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>, <span class="ident">str</span>::<span class="ident">Utf8Error</span><span class="op">&gt;</span> {
-	<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">ffi</span>::<span class="ident">CStr</span>;
+    <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">ffi</span>::<span class="ident">CStr</span>;
 
-	<span class="ident">str</span>::<span class="ident">from_utf8</span>(<span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">ptr</span>).<span class="ident">to_bytes</span>())
+    <span class="ident">str</span>::<span class="ident">from_utf8</span>(<span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">ptr</span>).<span class="ident">to_bytes</span>())
 }
 
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">version</span>() <span class="op">-&gt;</span> <span class="ident">Version</span> {
-	<span class="kw">unsafe</span> {
-		<span class="ident">sys</span>::<span class="ident">ddca_ddcutil_version</span>()
-	}
+    <span class="kw">unsafe</span> {
+        <span class="ident">sys</span>::<span class="ident">ddca_ddcutil_version</span>()
+    }
 }
 
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">version_string</span>() <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-	<span class="kw">unsafe</span> {
-		<span class="ident">c_str</span>(<span class="ident">sys</span>::<span class="ident">ddca_ddcutil_version_string</span>())
-			.<span class="ident">expect</span>(<span class="string">&quot;ddcutil returned invalid version string&quot;</span>)
-	}
+    <span class="kw">unsafe</span> {
+        <span class="ident">c_str</span>(<span class="ident">sys</span>::<span class="ident">ddca_ddcutil_version_string</span>())
+            .<span class="ident">expect</span>(<span class="string">&quot;ddcutil returned invalid version string&quot;</span>)
+    }
 }
 
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">verification_enabled</span>() <span class="op">-&gt;</span> <span class="ident">bool</span> {
-	<span class="kw">unsafe</span> {
-		<span class="ident">sys</span>::<span class="ident">ddca_is_verify_enabled</span>()
-	}
+    <span class="kw">unsafe</span> {
+        <span class="ident">sys</span>::<span class="ident">ddca_is_verify_enabled</span>()
+    }
 }
 
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_verification</span>(<span class="ident">onoff</span>: <span class="ident">bool</span>) {
-	<span class="kw">unsafe</span> {
-		<span class="ident">sys</span>::<span class="ident">ddca_enable_verify</span>(<span class="ident">onoff</span>)
-	}
+    <span class="kw">unsafe</span> {
+        <span class="ident">sys</span>::<span class="ident">ddca_enable_verify</span>(<span class="ident">onoff</span>)
+    }
 }
 
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u8</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">OutputLevel</span> {
-	<span class="ident">Terse</span> <span class="op">=</span> <span class="ident">sys</span>::<span class="ident">DDCA_OL_TERSE</span> <span class="kw">as</span> _,
-	<span class="ident">Normal</span> <span class="op">=</span> <span class="ident">sys</span>::<span class="ident">DDCA_OL_NORMAL</span> <span class="kw">as</span> _,
-	<span class="ident">Verbose</span> <span class="op">=</span> <span class="ident">sys</span>::<span class="ident">DDCA_OL_VERBOSE</span> <span class="kw">as</span> _,
+    <span class="ident">Terse</span> <span class="op">=</span> <span class="ident">sys</span>::<span class="ident">DDCA_OL_TERSE</span> <span class="kw">as</span> _,
+    <span class="ident">Normal</span> <span class="op">=</span> <span class="ident">sys</span>::<span class="ident">DDCA_OL_NORMAL</span> <span class="kw">as</span> _,
+    <span class="ident">Verbose</span> <span class="op">=</span> <span class="ident">sys</span>::<span class="ident">DDCA_OL_VERBOSE</span> <span class="kw">as</span> _,
 }
 
 <span class="kw">impl</span> <span class="ident">Default</span> <span class="kw">for</span> <span class="ident">OutputLevel</span> {
-	<span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
-		<span class="ident">OutputLevel</span>::<span class="ident">Normal</span>
-	}
+    <span class="kw">fn</span> <span class="ident">default</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
+        <span class="ident">OutputLevel</span>::<span class="ident">Normal</span>
+    }
 }
 
 <span class="kw">impl</span> <span class="ident">OutputLevel</span> {
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="ident">sys</span>::<span class="ident">DDCA_Output_Level</span>) <span class="op">-&gt;</span> <span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, ()<span class="op">&gt;</span> {
-		<span class="kw">match</span> <span class="ident">raw</span> {
-			<span class="ident">sys</span>::<span class="ident">DDCA_OL_TERSE</span> <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">OutputLevel</span>::<span class="ident">Terse</span>),
-			<span class="ident">sys</span>::<span class="ident">DDCA_OL_NORMAL</span> <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">OutputLevel</span>::<span class="ident">Normal</span>),
-			<span class="ident">sys</span>::<span class="ident">DDCA_OL_VERBOSE</span> <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">OutputLevel</span>::<span class="ident">Verbose</span>),
-			_ <span class="op">=&gt;</span> <span class="prelude-val">Err</span>(()),
-		}
-	}
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="ident">sys</span>::<span class="ident">DDCA_Output_Level</span>) <span class="op">-&gt;</span> <span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="self">Self</span>, ()<span class="op">&gt;</span> {
+        <span class="kw">match</span> <span class="ident">raw</span> {
+            <span class="ident">sys</span>::<span class="ident">DDCA_OL_TERSE</span> <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">OutputLevel</span>::<span class="ident">Terse</span>),
+            <span class="ident">sys</span>::<span class="ident">DDCA_OL_NORMAL</span> <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">OutputLevel</span>::<span class="ident">Normal</span>),
+            <span class="ident">sys</span>::<span class="ident">DDCA_OL_VERBOSE</span> <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">OutputLevel</span>::<span class="ident">Verbose</span>),
+            _ <span class="op">=&gt;</span> <span class="prelude-val">Err</span>(()),
+        }
+    }
 
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">sys</span>::<span class="ident">DDCA_Output_Level</span> {
-		<span class="kw-2">*</span><span class="self">self</span> <span class="kw">as</span> _
-	}
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">sys</span>::<span class="ident">DDCA_Output_Level</span> {
+        <span class="kw-2">*</span><span class="self">self</span> <span class="kw">as</span> _
+    }
 }
 
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">output_level</span>() <span class="op">-&gt;</span> <span class="ident">OutputLevel</span> {
-	<span class="kw">unsafe</span> {
-		<span class="ident">OutputLevel</span>::<span class="ident">from_raw</span>(<span class="ident">sys</span>::<span class="ident">ddca_get_output_level</span>())
-			.<span class="ident">expect</span>(<span class="string">&quot;invalid output level&quot;</span>)
-	}
+    <span class="kw">unsafe</span> {
+        <span class="ident">OutputLevel</span>::<span class="ident">from_raw</span>(<span class="ident">sys</span>::<span class="ident">ddca_get_output_level</span>())
+            .<span class="ident">expect</span>(<span class="string">&quot;invalid output level&quot;</span>)
+    }
 }
 
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_output_level</span>(<span class="ident">value</span>: <span class="ident">OutputLevel</span>) {
-	<span class="kw">unsafe</span> {
-		<span class="ident">sys</span>::<span class="ident">ddca_set_output_level</span>(<span class="ident">value</span>.<span class="ident">to_raw</span>())
-	}
+    <span class="kw">unsafe</span> {
+        <span class="ident">sys</span>::<span class="ident">ddca_set_output_level</span>(<span class="ident">value</span>.<span class="ident">to_raw</span>())
+    }
 }
 
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">u8</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>, <span class="ident">PartialOrd</span>, <span class="ident">Ord</span>, <span class="ident">Hash</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">RetryType</span> {
-	<span class="ident">WriteOnly</span> <span class="op">=</span> <span class="ident">sys</span>::<span class="ident">DDCA_WRITE_ONLY_TRIES</span> <span class="kw">as</span> _,
-	<span class="ident">WriteRead</span> <span class="op">=</span> <span class="ident">sys</span>::<span class="ident">DDCA_WRITE_READ_TRIES</span> <span class="kw">as</span> _,
-	<span class="ident">MultiPart</span> <span class="op">=</span> <span class="ident">sys</span>::<span class="ident">DDCA_MULTI_PART_TRIES</span> <span class="kw">as</span> _,
+    <span class="ident">WriteOnly</span> <span class="op">=</span> <span class="ident">sys</span>::<span class="ident">DDCA_WRITE_ONLY_TRIES</span> <span class="kw">as</span> _,
+    <span class="ident">WriteRead</span> <span class="op">=</span> <span class="ident">sys</span>::<span class="ident">DDCA_WRITE_READ_TRIES</span> <span class="kw">as</span> _,
+    <span class="ident">MultiPart</span> <span class="op">=</span> <span class="ident">sys</span>::<span class="ident">DDCA_MULTI_PART_TRIES</span> <span class="kw">as</span> _,
 }
 
 <span class="kw">impl</span> <span class="ident">RetryType</span> {
-	<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">sys</span>::<span class="ident">DDCA_Retry_Type</span> {
-		<span class="kw-2">*</span><span class="self">self</span> <span class="kw">as</span> _
-	}
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">sys</span>::<span class="ident">DDCA_Retry_Type</span> {
+        <span class="kw-2">*</span><span class="self">self</span> <span class="kw">as</span> _
+    }
 }
 
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">max_retries</span>() <span class="op">-&gt;</span> <span class="ident">usize</span> {
-	<span class="kw">unsafe</span> {
-		<span class="ident">sys</span>::<span class="ident">ddca_max_max_tries</span>() <span class="kw">as</span> _
-	}
+    <span class="kw">unsafe</span> {
+        <span class="ident">sys</span>::<span class="ident">ddca_max_max_tries</span>() <span class="kw">as</span> _
+    }
 }
 
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_retries</span>(<span class="ident">ty</span>: <span class="ident">RetryType</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
-	<span class="kw">unsafe</span> {
-		<span class="ident">sys</span>::<span class="ident">ddca_get_max_tries</span>(<span class="ident">ty</span>.<span class="ident">to_raw</span>()) <span class="kw">as</span> _
-	}
+    <span class="kw">unsafe</span> {
+        <span class="ident">sys</span>::<span class="ident">ddca_get_max_tries</span>(<span class="ident">ty</span>.<span class="ident">to_raw</span>()) <span class="kw">as</span> _
+    }
 }
 
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_retries</span>(<span class="ident">ty</span>: <span class="ident">RetryType</span>, <span class="ident">value</span>: <span class="ident">usize</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-	<span class="kw">unsafe</span> {
-		<span class="ident">Error</span>::<span class="ident">from_status</span>(<span class="ident">sys</span>::<span class="ident">ddca_set_max_tries</span>(<span class="ident">ty</span>.<span class="ident">to_raw</span>(), <span class="ident">value</span> <span class="kw">as</span> _)).<span class="ident">map</span>(<span class="ident">drop</span>)
-	}
+    <span class="kw">unsafe</span> {
+        <span class="ident">Error</span>::<span class="ident">from_status</span>(<span class="ident">sys</span>::<span class="ident">ddca_set_max_tries</span>(<span class="ident">ty</span>.<span class="ident">to_raw</span>(), <span class="ident">value</span> <span class="kw">as</span> _)).<span class="ident">map</span>(<span class="ident">drop</span>)
+    }
 }
 
 <span class="attribute">#[<span class="ident">test</span>]</span>
 <span class="kw">fn</span> <span class="ident">test_api</span>() {
-	<span class="kw">let</span> _ <span class="op">=</span> <span class="ident">version</span>();
-	<span class="kw">let</span> _ <span class="op">=</span> <span class="ident">version_string</span>();
-	<span class="kw">let</span> _ <span class="op">=</span> <span class="ident">output_level</span>();
-	<span class="kw">let</span> _ <span class="op">=</span> <span class="ident">verification_enabled</span>();
-	<span class="kw">let</span> _ <span class="op">=</span> <span class="ident">max_retries</span>();
-	<span class="kw">for</span> <span class="ident">ty</span> <span class="kw">in</span> <span class="macro">vec</span><span class="macro">!</span>[<span class="ident">RetryType</span>::<span class="ident">WriteOnly</span>, <span class="ident">RetryType</span>::<span class="ident">WriteRead</span>, <span class="ident">RetryType</span>::<span class="ident">MultiPart</span>] {
-		<span class="kw">let</span> _ <span class="op">=</span> <span class="ident">get_retries</span>(<span class="ident">ty</span>);
-	}
+    <span class="kw">let</span> _ <span class="op">=</span> <span class="ident">version</span>();
+    <span class="kw">let</span> _ <span class="op">=</span> <span class="ident">version_string</span>();
+    <span class="kw">let</span> _ <span class="op">=</span> <span class="ident">output_level</span>();
+    <span class="kw">let</span> _ <span class="op">=</span> <span class="ident">verification_enabled</span>();
+    <span class="kw">let</span> _ <span class="op">=</span> <span class="ident">max_retries</span>();
+    <span class="kw">for</span> <span class="ident">ty</span> <span class="kw">in</span> <span class="macro">vec</span><span class="macro">!</span>[<span class="ident">RetryType</span>::<span class="ident">WriteOnly</span>, <span class="ident">RetryType</span>::<span class="ident">WriteRead</span>, <span class="ident">RetryType</span>::<span class="ident">MultiPart</span>] {
+        <span class="kw">let</span> _ <span class="op">=</span> <span class="ident">get_retries</span>(<span class="ident">ty</span>);
+    }
 }
 
 <span class="attribute">#[<span class="ident">test</span>]</span>
 <span class="kw">fn</span> <span class="ident">test_output_level</span>() {
-	<span class="kw">for</span> <span class="ident">level</span> <span class="kw">in</span> <span class="macro">vec</span><span class="macro">!</span>[<span class="ident">OutputLevel</span>::<span class="ident">Terse</span>, <span class="ident">OutputLevel</span>::<span class="ident">Normal</span>, <span class="ident">OutputLevel</span>::<span class="ident">Verbose</span>] {
-		<span class="ident">set_output_level</span>(<span class="ident">level</span>);
-	}
+    <span class="kw">for</span> <span class="ident">level</span> <span class="kw">in</span> <span class="macro">vec</span><span class="macro">!</span>[<span class="ident">OutputLevel</span>::<span class="ident">Terse</span>, <span class="ident">OutputLevel</span>::<span class="ident">Normal</span>, <span class="ident">OutputLevel</span>::<span class="ident">Verbose</span>] {
+        <span class="ident">set_output_level</span>(<span class="ident">level</span>);
+    }
 }
 
 <span class="attribute">#[<span class="ident">test</span>]</span>
 <span class="kw">fn</span> <span class="ident">test_retries</span>() {
-	<span class="kw">let</span> <span class="ident">max</span> <span class="op">=</span> <span class="ident">max_retries</span>();
-	<span class="kw">for</span> <span class="ident">ty</span> <span class="kw">in</span> <span class="macro">vec</span><span class="macro">!</span>[<span class="ident">RetryType</span>::<span class="ident">WriteOnly</span>, <span class="ident">RetryType</span>::<span class="ident">WriteRead</span>, <span class="ident">RetryType</span>::<span class="ident">MultiPart</span>] {
-		<span class="kw">for</span> <span class="ident">retry</span> <span class="kw">in</span> <span class="number">1</span>..(<span class="ident">max</span> <span class="op">+</span> <span class="number">1</span>) {
-			<span class="macro">assert</span><span class="macro">!</span>(<span class="ident">set_retries</span>(<span class="ident">ty</span>, <span class="ident">retry</span>).<span class="ident">is_ok</span>());
-		}
-		<span class="macro">assert</span><span class="macro">!</span>(<span class="ident">set_retries</span>(<span class="ident">ty</span>, <span class="ident">max</span> <span class="op">+</span> <span class="number">1</span>).<span class="ident">is_err</span>());
-	}
+    <span class="kw">let</span> <span class="ident">max</span> <span class="op">=</span> <span class="ident">max_retries</span>();
+    <span class="kw">for</span> <span class="ident">ty</span> <span class="kw">in</span> <span class="macro">vec</span><span class="macro">!</span>[<span class="ident">RetryType</span>::<span class="ident">WriteOnly</span>, <span class="ident">RetryType</span>::<span class="ident">WriteRead</span>, <span class="ident">RetryType</span>::<span class="ident">MultiPart</span>] {
+        <span class="kw">for</span> <span class="ident">retry</span> <span class="kw">in</span> <span class="number">1</span>..(<span class="ident">max</span> <span class="op">+</span> <span class="number">1</span>) {
+            <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">set_retries</span>(<span class="ident">ty</span>, <span class="ident">retry</span>).<span class="ident">is_ok</span>());
+        }
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">set_retries</span>(<span class="ident">ty</span>, <span class="ident">max</span> <span class="op">+</span> <span class="number">1</span>).<span class="ident">is_err</span>());
+    }
 }
 </pre>
 </section>
